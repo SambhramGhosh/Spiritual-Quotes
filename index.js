@@ -1,11 +1,19 @@
+const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
+app.use(express.json());
+
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
+  }));
 
 
 //MongoDB URI
-const mongoURI = 'mongodb+srv://sambhram:sam123@quotes01.lf60mh8.mongodb.net/?retryWrites=true&w=majority&appName=quotes01';
+const mongoURI = 'mongo_url_here';
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
