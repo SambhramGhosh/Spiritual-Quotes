@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spiritual Quote App</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #cee1ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #quote {
+      font-size: 1.5rem;
+      margin: 20px;
+      text-align: center;
+      max-width: 600px;
+    }
+    #author {
+      font-style: italic;
+      color: #666;
+    }
+    #butt{
+        padding: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="quote">Click the button to receive wisdom ✨</div>
+  <div id="author"></div>
+  <div id="butt">
+  <button onclick="fetchQuote()">Get Quote</button>
+  </div>
+  <script>
+    async function fetchQuote() {
+      const res = await fetch('http://localhost:3000/quotes/random');
+      const data = await res.json();
+      document.getElementById('quote').innerText = `"${data.text}"`;
+      document.getElementById('author').innerText = `— ${data.author}`;
+    }
+  </script>
+
+</body>
+</html>
